@@ -35,8 +35,8 @@ class Device(models.Model):
         (INPROGRESS, 'Pending')
     )
     TYPES = (
-        ('ToFix', 'To fix'),
-        ('ToCreate', 'To create')
+        ('To fix', 'To fix'),
+        ('To create', 'To create')
     )
 
     status = models.CharField(max_length=255, choices=CHOICES, default=INPROGRESS)
