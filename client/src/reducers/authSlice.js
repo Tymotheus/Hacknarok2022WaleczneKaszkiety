@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const loginUser = createAsyncThunk(
-  'auth/login',
+  'auth/login/',
   async (payload) => {
     const response = await service.login(payload.username, payload.password);
     const {access} = response.data;
