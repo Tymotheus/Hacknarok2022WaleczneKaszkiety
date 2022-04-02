@@ -28,6 +28,7 @@ class CoreApi {
 
   beforeRequest(config) {
     if ("requireAuth" in config && config.requireAuth === false) {
+      config.headers['Access-Control-Allow-Origin'] = '*';
       return config;
     }
 
@@ -35,7 +36,6 @@ class CoreApi {
     if (token) {
       const originalRequest = config;
       originalRequest.headers.Authorization = token;
-
       return originalRequest;
     }
     return new Error("User not logged in");
