@@ -21,7 +21,8 @@ class Location(models.Model):
 
 
 class Device(models.Model):
-    """For example hand-dryer"""
+    """For example hand-dryer - if you want to fix the device.
+        For example new garden or park - if you want to create something new."""
     name = models.CharField(max_length=50)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     comment = models.TextField()
