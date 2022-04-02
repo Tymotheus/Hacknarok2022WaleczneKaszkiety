@@ -1,7 +1,5 @@
+import enum
 from django.db import models
-
-# Create your models here.
-
 
 class Institution(models.Model):
     """For example: Krakowski Park Technologiczny"""
@@ -25,3 +23,13 @@ class Device(models.Model):
     name = models.CharField(max_length=50)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     comment = models.TextField()
+
+    INPROGRESS = 'InProgress'
+    DONE = 'Done'
+
+    CHOICES = (
+        (DONE, 'Done'),
+        (INPROGRESS, 'Pending')
+    )
+
+    status = models.CharField(max_length=255, choices=CHOICES, default=INPROGRESS)
