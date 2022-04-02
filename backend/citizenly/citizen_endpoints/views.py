@@ -39,7 +39,7 @@ class DeviceViewSet(viewsets.ModelViewSet):
 
         return JsonResponse({"message": "Post voted successfully"}, status=status.HTTP_200_OK)
 
-    @action(methods=['get'], detail=False, url_path='by-location')
+    @action(methods=['post'], detail=False, url_path='by-location')
     def get_devices_by_location(self, request) -> JsonResponse:
         """Request should look like this:
             {
