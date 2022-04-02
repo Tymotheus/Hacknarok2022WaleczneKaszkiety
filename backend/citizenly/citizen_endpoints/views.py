@@ -48,3 +48,15 @@ class DeviceViewSet(viewsets.ModelViewSet):
         desired_devices = Device.objects.filter(location=request.data['location_id'])
         serializer = DeviceSerializer(desired_devices, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False )
+
+    @action(methods=['get'], detail=False, url_path='to-fix')
+    def get_devices_to_fix(self, request) -> JsonResponse:
+        desired_devices = Device.objects.filter(type="To fix")
+        serializer = DeviceSerializer(desired_devices, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+
+    @action(methods=['get'], detail=False, url_path='to-create')
+    def get_devices_to_create(self, request) -> JsonResponse:
+        desired_devices = Device.objects.filter(type="To create")
+        serializer = DeviceSerializer(desired_devices, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)

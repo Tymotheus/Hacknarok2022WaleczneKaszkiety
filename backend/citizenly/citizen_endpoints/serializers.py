@@ -21,4 +21,4 @@ class DeviceSerializer(ModelSerializer):
 
     class Meta:
         model = Device
-        fields = ("name", "location", "comment", "status")
+        fields = ("name", "location", "comment", "votes", "status", "type")
