@@ -7,7 +7,7 @@ class AuthService extends CoreService {
   }
 
   login(username, password) {
-    return this.api.post('/login', { username, password }, { requireAuth: false });
+    return this.api.post('/login/', { username, password }, { requireAuth: false });
   }
 
   register(email, password, name, countryCode, phoneNumber) {
