@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-import {LoginPage, Home} from "./pages";
+import {LoginPage, Home, Issue} from "./pages";
 
 function App() {
   const { status } = useSelector((state) => state.auth);
@@ -16,6 +16,8 @@ function App() {
           {isLoggedIn ? (
             <Routes>
               <Route index element={<Home />} />
+              <Route path="/issue/:id" element={<Issue />} />
+              <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           ) : (
             <Routes>
