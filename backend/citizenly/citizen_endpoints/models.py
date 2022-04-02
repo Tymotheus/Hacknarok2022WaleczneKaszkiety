@@ -28,7 +28,7 @@ class Device(models.Model):
     comment = models.TextField()
     votes = models.IntegerField(default=0)
 
-    INPROGRESS = 'InProgress'
+    INPROGRESS = 'Pending'
     DONE = 'Done'
     CHOICES = (
         (DONE, 'Done'),
