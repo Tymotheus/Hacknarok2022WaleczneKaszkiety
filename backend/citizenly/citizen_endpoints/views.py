@@ -49,6 +49,16 @@ class DeviceViewSet(viewsets.ModelViewSet):
         serializer = DeviceSerializer(desired_devices, many=True)
         return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False )
 
+    @action(methods=['post'], detail=False, url_path='by-institution')
+    def get_devices_by_institution(self, request) -> JsonResponse:
+        """Request should look like this:
+            {
+                "institution_id" : [number with id],
+            }"""
+        desired_devices = Device.objects.filter(location__institution=request.data['institution_id'])
+        serializer = DeviceSerializer(desired_devices, many=True)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+
     @action(methods=['get'], detail=False, url_path='to-fix')
     def get_devices_to_fix(self, request) -> JsonResponse:
         desired_devices = Device.objects.filter(type="To fix")
