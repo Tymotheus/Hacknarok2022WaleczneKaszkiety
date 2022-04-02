@@ -6,8 +6,8 @@ class AuthService extends CoreService {
     super(endpoint);
   }
 
-  login(email, password) {
-    return this.api.post('login', { email, password }, { requireAuth: false });
+  login(username, password) {
+    return this.api.post('/login', { username, password }, { requireAuth: false });
   }
 
   register(email, password, name, countryCode, phoneNumber) {
@@ -27,6 +27,6 @@ class AuthService extends CoreService {
   }
 }
 
-const instance = new AuthService('/citizenly_endpoints');
+const instance = new AuthService('/users');
 
 export default instance;

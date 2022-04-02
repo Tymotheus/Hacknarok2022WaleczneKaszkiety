@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../reducers/authSlice";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   return (
     <Form className="p-5 bg-white" style={{ width: "40vw" }}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>Username</Form.Label>
         <Form.Control
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
+          onChange={(e) => setUsername(e.target.value)}
+          type="text"
           placeholder="Enter email"
         />
         <Form.Text className="text-muted">
@@ -33,8 +35,7 @@ const LoginPage = () => {
       <Button
         onClick={(e) => {
           e.preventDefault();
-        //   console.log({ email, password });
-          loginUser({ email, password });
+        dispatch(loginUser({ username, password }));
         }}
         variant="primary"
         type="submit"

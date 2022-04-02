@@ -1,22 +1,28 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-import LoginPage from "./pages/login";
+import {LoginPage, Home} from "./pages";
 
 function App() {
+  const { status } = useSelector((state) => state.auth);
+  const isLoggedIn = status === "logged";
   return (
-    <div className="d-flex justify-content-center align-items-center bg-light" style={{height: "100vh", width: "100vw"}}>
+    <div
+      className="d-flex justify-content-center align-items-center bg-light"
+      style={{ height: "100vh", width: "100vw" }}
+    >
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LoginPage />}>
-            {/* <Route index element={<Home />} />
-            <Route path="teams" element={<Teams />}>
-              <Route path=":teamId" element={<Team />} />
-              <Route path="new" element={<NewTeamForm />} />
-              <Route index element={<LeagueStandings />} />
-            </Route> */}
-          </Route>
-        </Routes>
+          {isLoggedIn ? (
+            <Routes>
+              <Route index element={<Home />} />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route index element={<LoginPage />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          )}
       </BrowserRouter>
       ,
     </div>

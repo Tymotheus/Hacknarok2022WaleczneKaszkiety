@@ -4,7 +4,7 @@ import env from "../config";
 import { getToken, setToken } from "../utils/cookies";
 
 class CoreApi {
-  constructor(baseUrl = env.BaseUrl) {
+  constructor(baseUrl = env.baseURL) {
     this.api = AxiosProvider(baseUrl);
     this.baseUrl = baseUrl;
 

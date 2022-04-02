@@ -9,9 +9,9 @@ const initialState = {
 export const loginUser = createAsyncThunk(
   'auth/login',
   async (payload) => {
-    const response = await service.login(payload);
-    console.log(payload)
-    return response;
+    const response = await service.login(payload.username, payload.password);
+    const {access} = response.data;
+    return {token: access};
   }
 );
 
@@ -27,10 +27,10 @@ export const counterSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         setToken(action.payload.token)
         state.status = 'logged';
-        state.value += action.payload.user;
       })
       .addCase(loginUser.rejected, (state) => {
           state.status = 'not logged';
+          // state.status = 'logged';
       });
   },
 });
