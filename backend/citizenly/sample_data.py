@@ -1,4 +1,5 @@
 from citizen_endpoints.models import *
+from django.contrib.auth.models import User
 
 def clear_data():
     """Deletes all the table data"""
@@ -72,8 +73,13 @@ def seed_devices():
         comment="Studenci chcieliby zobaczyć w sali cichej nauki tablicę na mazaki!",
     )
 
+
 def set_votes():
     try:
-        pass
+        dev1 = Device.objects.get(id=1)
+        dev1.upvote(User.objects.get(id=1))
+        dev1.upvote(User.objects.get(id=2))
+        dev2 = Device.objects.get(id=5)
+        dev2.upvote(User.objects.get(id=1))
     except Exception as e:
         print(e)
