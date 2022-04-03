@@ -11,7 +11,7 @@ export default function App() {
       <QrCodeScanner scanned={scanned} setScanned={setScanned} data={data} setData={setData} />
     )
     return (
-      <Main />
+      <Main location={data || 1} />
     )
 }
 
