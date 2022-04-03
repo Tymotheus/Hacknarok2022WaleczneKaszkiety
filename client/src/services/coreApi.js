@@ -27,18 +27,19 @@ class CoreApi {
   }
 
   beforeRequest(config) {
-    if ("requireAuth" in config && config.requireAuth === false) {
-      config.headers['Access-Control-Allow-Origin'] = '*';
-      return config;
-    }
+    // if ("requireAuth" in config && config.requireAuth === false) {
+    //   //config.headers['Access-Control-Allow-Origin'] = '*';
+    //   return config;
+    // }
 
-    const token = getToken();
-    if (token) {
-      const originalRequest = config;
-      originalRequest.headers.Authorization = token;
-      return originalRequest;
-    }
-    return new Error("User not logged in");
+    // const token = getToken();
+    // if (token) {
+    //   const originalRequest = config;
+    //   originalRequest.headers.Authorization = token;
+    //   return originalRequest;
+    // }
+    // return new Error("User not logged in");
+    return config;
   }
 
   requestError(error) {

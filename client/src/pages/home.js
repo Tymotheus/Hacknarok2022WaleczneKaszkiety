@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { IssueStatus, NavBar, Table } from "../components";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getAllLocations } from "../reducers/authSlice";
 
 const Home = () => {
-  const navigate = useNavigate();
-
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <NavBar />
 
       <Container className="ms-5">
           <Table
-            onRowClick={(item) => navigate(`/issue/${item.id}`)}
+            //onRowClick={(item) => navigate(`/issue/${item.id}`)}
             data={[
               { jeden: "one", dwa: "two", id: 15, val: 'Done' },
               { jeden: "one", dwa: "two", id: 20, val: 'Pending' },
