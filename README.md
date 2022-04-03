@@ -8,7 +8,7 @@ Centralized platform for gathering the feedback.
 - Maintainer of the institutions - cleaners, gardeners etc.
 
 # Final presentation (in Polish)
-![](presentation/Citizenly.jpg)
+![](presentation/Citizenly.png)
 
 *Readme written by Tymoteusz Ciesielski* \
 03-04-2022
