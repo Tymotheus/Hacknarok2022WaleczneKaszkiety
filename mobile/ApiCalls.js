@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://172.20.15.67:8000";
 
 // export const getAllDevices = async (id) => {
 //   const response = axios.post(`${baseUrl}/citizenly_endpoints/devices/by-location/`, {location_id: id});

@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import DeviceItem from "./DeviceItem";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://172.20.15.67:8000";
 
 function HomeScreen({ location }) {
   const [deviceData, setDeviceData] = React.useState([]);

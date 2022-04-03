@@ -13,7 +13,7 @@ import {
 const OnVotePress = (deviceId, callback) => {
   console.log(deviceId);
   fetch(
-    `http://localhost:8000/citizenly_endpoints/devices/${deviceId}/vote-device/`,
+    `http://172.20.15.67:8000/citizenly_endpoints/devices/${deviceId}/vote-device/`,
     {
       method: "POST",
       headers: {
@@ -84,11 +84,11 @@ const DeviceItem = ({ setDeviceData, device, type }) => {
                 ]}
                 onPress={() => setVisible(!isVisible)}
               />
-              <Button
+              {isToCreate && <Button
                 title="Vote +1"
                 style={[styles.button, styles.buttonClose]}
                 onPress={onPressVote}
-              />
+              />}
             </View>
           </View>
         </View>

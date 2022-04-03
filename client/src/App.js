@@ -15,19 +15,14 @@ function App() {
       style={{ height: "100vh", width: "100vw" }}
     >
       <BrowserRouter>
-        {isLoggedIn ? (
           <Routes>
             <Route index element={<Home />} />
-            <Route path="/issue/:id" element={<Issue />} />
+            {/* <Route path="/issue/:id" element={<Issue />} /> */}
+            <Route path="/locations" element={<Locations />} />
+            <Route path="/issue/:id" element={<Devices />} />
             <Route path="*" element={<Navigate to="/" />} />
+            {/* <Route path="*" element={<Navigate to="/locations" />} /> */}
           </Routes>
-        ) : (
-          <Routes>
-            <Route path="locations/" element={<Locations />} />
-            <Route path="devices/" element={<Devices />} />
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        )}
       </BrowserRouter>
       ,
     </div>
