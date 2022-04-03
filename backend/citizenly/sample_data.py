@@ -72,6 +72,20 @@ def seed_devices():
         location=loc2,
         comment="Studenci chcieliby zobaczyć w sali cichej nauki tablicę na mazaki!",
     )
+    Device.objects.create(
+        id=6,
+        name="Kwiaty przed wejściem",
+        type="To create",
+        location=loc2,
+        comment="Przed wejściem możnaby posadzić hortensje...",
+    )
+    Device.objects.create(
+        id=7,
+        name="Portret Jana Pawła II",
+        type="To create",
+        location=loc2,
+        comment="Zdjęcie tego wielkiego Polaka mogłoby przyozdobić hol...",
+    )
 
 
 def set_votes():
