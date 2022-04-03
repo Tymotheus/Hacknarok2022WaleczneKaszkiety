@@ -7,7 +7,24 @@ class AuthService extends CoreService {
   }
 
   login(username, password) {
-    return this.api.post('/login/', { username, password }, { requireAuth: false });
+    return this.api.post('users/login/', { username, password }, { requireAuth: false });
+  }
+
+  getAllLocations() {
+    return this.api.get('citizenly_endpoints/locations/', { requireAuth: false });
+  }
+
+  getAllDevicesByLocation(locationId) {
+    return this.api.post('citizenly_endpoints/devices/by-location/', { location_id: locationId }, { requireAuth: false })
+  }
+
+  deleteDevice(deviceId) {
+    const resp = this.api.delete(`citizenly_endpoints/devices/${deviceId}`, { requireAuth: false })
+    return resp
+  }
+
+  changeStatus({ device, newStatus }) {
+    return this.api.put(`citizenly_endpoints/devices/${device.id}/`, { name: device.name, location: device.location, comment: device.comment, votes: device.votes, type: device.type, status: newStatus }, { requireAuth: false })
   }
 
   register(email, password, name, countryCode, phoneNumber) {
@@ -27,6 +44,6 @@ class AuthService extends CoreService {
   }
 }
 
-const instance = new AuthService('/users');
+const instance = new AuthService('');
 
 export default instance;

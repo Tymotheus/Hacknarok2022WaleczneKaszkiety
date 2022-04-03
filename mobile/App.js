@@ -7,11 +7,11 @@ export default function App() {
   const [data, setData] = useState(null);
   const [scanned, setScanned] = useState(false);
   
-    if(scanned) return (
+    if(!scanned) return (
       <QrCodeScanner scanned={scanned} setScanned={setScanned} data={data} setData={setData} />
     )
     return (
-      <Main />
+      <Main location={data || 1} />
     )
 }
 

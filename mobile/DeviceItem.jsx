@@ -9,9 +9,55 @@ import {
   Modal,
 } from "react-native";
 
-const DeviceItem = ({ device, type }) => {
+
+const OnVotePress = (deviceId, callback) => {
+  console.log(deviceId);
+  fetch(
+    `http://172.20.15.67:8000/citizenly_endpoints/devices/${deviceId}/vote-device/`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_id: 1 }),
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.error_message);
+      if (data.error_message) {
+        alert('Zagłosowłeś już!!!');
+        throw new Error(data.error_message);
+      }
+    })
+    .then(() => callback());
+};
+
+const DeviceItem = ({ setDeviceData, device, type }) => {
   const isToCreate = type === "create";
   const [isVisible, setVisible] = React.useState(false);
+
+  const onPressVote = (item) => {
+    try {
+      OnVotePress(device.id, () =>
+        setDeviceData((prev) => {
+          return prev.map((item) => {
+            if (item.id === device.id) {
+              return {
+                ...item,
+                votes: item.votes + 1,
+              };
+            }
+            return item;
+          });
+        })
+      );
+    } catch (error) {
+      console.error(error);
+      alert('Zagłosowłeś już!!!');
+    }
+  };
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -28,17 +74,21 @@ const DeviceItem = ({ device, type }) => {
             <Text>{device.name}</Text>
             <Text style={styles.modalText}>{`votes: ${device.votes}`}</Text>
             <Text style={styles.modalText}>{device.comment}</Text>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: "row" }}>
               <Button
                 title="Close"
-                style={[styles.button, styles.buttonClose, {paddingRight: 10}]}
+                style={[
+                  styles.button,
+                  styles.buttonClose,
+                  { paddingRight: 10 },
+                ]}
                 onPress={() => setVisible(!isVisible)}
               />
-              <Button
+              {isToCreate && <Button
                 title="Vote +1"
                 style={[styles.button, styles.buttonClose]}
-                onPress={() => setVisible(!isVisible)}
-              />
+                onPress={onPressVote}
+              />}
             </View>
           </View>
         </View>
@@ -49,12 +99,15 @@ const DeviceItem = ({ device, type }) => {
       >
         <View style={styles.wrapper}>
           {/* <Modal isVisible={isVisible} /> */}
-          <View style={{ flexDirection: "row" }}>
-            <Text style={{ marginRight: 15 }}>{device.name}</Text>
-            <Text>{`votes: ${device.votes}`}</Text>
+          <View style={{ flexDirection: "column" }}>
+            <Text style={{ marginRight: 15, fontWeight: 'bold' }}>{device.name}</Text>
+            <Text style={{fontWeight: '300'}}>{`votes: ${device.votes}`}</Text>
           </View>
+          <Text numberOfLines={1} style={{width: '50%', overflow: 'hidden'}}>
+            {device.comment}
+          </Text>
           {isToCreate && (
-            <Button title="+1" onPress={() => alert("+1")}>
+            <Button title="+1" onPress={onPressVote}>
               +1
             </Button>
           )}
@@ -71,6 +124,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     width: 350,
+    height: 60,
     borderBottomColor: "black",
     borderBottomWidth: 1,
   },
