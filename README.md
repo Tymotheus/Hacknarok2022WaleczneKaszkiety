@@ -9,6 +9,7 @@ Centralized platform for gathering the feedback.
 
 # Final presentation (in Polish)
 ![](presentation/Citizenly.png)
+![](presentation/Citizenly(1).png)
 
 *Readme written by Tymoteusz Ciesielski* \
 03-04-2022
